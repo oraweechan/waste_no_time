@@ -1,12 +1,12 @@
 import './App.css';
 import SignIn from './pages/SignIn';
-import Forms from './pages/EventForm';
+import EventForm from './pages/EventForm';
 
 function App() {
   return (
     <div className="App">
       <SignIn />
-      <Forms />
+      <EventForm />
     </div>
   );
 }
