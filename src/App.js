@@ -8,11 +8,16 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <NavBar />
       <HomePage />
       {/* <SignIn /> */}
       {/* <EventForm /> */}
       <Footer />
+=======
+      {/* <SignIn /> */}
+      <EventForm />
+>>>>>>> 5009f99 (added detail for step1 component)
     </div>
   );
 }
