@@ -1,35 +1,32 @@
-import { useForm } from "react-hook-form";
-import { Grid, Typography } from "@mui/material";
+import { Box, Button, FormControlLabel, Grid, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useState } from "react";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 
-export default function Step1() {
-  const { handleSubmit, control } = useForm();
-  const [expandAccordian, setExpandAccordian] = useState(false);
-  const [checked, setChecked] = useState(false);
+export default function FirstStep({ handleChange, step, setStep }) {
+  const [expand, setExpand] = useState(false);
+  let navigate = useNavigate();
+  console.log(step)
 
-  const handleChange = () => {
-    if (expandAccordian) {
-      setExpandAccordian(false);
-    } else setExpandAccordian(true);
+  const onSubmit = () => {
+    setStep((currStep) => currStep + 1);
+    navigate(`/form/2`);
   };
 
-  const handleCheckSelection = () => {
-    if (checked) {
-      setChecked(false);
-    } else setChecked(true);
+  const handleAccordion = () => {
+    if (expand) {
+      setExpand(false);
+    } else setExpand(true);
   };
 
   return (
-    <div>
-      <form>
+    <div className="formDetails1">
+      <Box component="form" onSubmit={onSubmit}>
         <Grid justifyContent="center" container>
           <Grid item xs={12}>
             <Typography>
@@ -38,9 +35,9 @@ export default function Step1() {
           </Grid>
 
           <Grid item>
-            <Accordion expanded={expandAccordian === true}>
+            <Accordion expanded={expand === true}>
               <AccordionSummary
-                // expandIcon={<ExpandMoreIcon />}
+              onClick={handleAccordion}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
@@ -92,20 +89,31 @@ export default function Step1() {
               </AccordionDetails>
             </Accordion>
           </Grid>
-          <Grid container justifyContent="center" onClick={handleChange}>
-            {!expandAccordian ? "click to expand" : "click to collapse"}
-            {!expandAccordian ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+          <Grid container justifyContent="center" onClick={handleAccordion}>
+            {!expand ? (
+              <Typography>CLICK TO EXPAND</Typography>
+            ) : (
+              <Typography>CLICK TO COLLAPSE</Typography>
+            )}
+            {!expand ? <ExpandMoreIcon /> : <ExpandLessIcon />}
           </Grid>
-          <FormGroup align="center">
-            <FormControlLabel
-              control={
-                <Checkbox value={checked} onClick={handleCheckSelection} />
-              }
-              label="I AGREE TO THESE TERMS AND CONDITIONS"
-            />
-          </FormGroup>
+          <FormControlLabel
+            label="I AGREE TO THESE TERMS AND CONDITIONS"
+            value="true"
+            control={
+              <Checkbox
+                onChange={handleChange("termsAndConditions")}
+                
+                defaultValue={false}
+                required
+              />
+            }
+          />
         </Grid>
-      </form>
+        <Button type="submit" variant="contained">
+          Begin Application
+        </Button>
+      </Box>
     </div>
   );
 }
