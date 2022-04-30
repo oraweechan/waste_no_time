@@ -1,16 +1,15 @@
+import TermsAndConditions from "../components/Forms/TermsAndConditions";
 import FirstStep from "../components/Forms/FirstStep";
 import SecondStep from "../components/Forms/SecondStep";
 import ThirdStep from "../components/Forms/ThirdStep";
-import FourthStep from "../components/Forms/FourthStep";
-import FinalPage from "../components/Forms/FinalPage";
-import { useState } from "react";
 import FormHeader from "../components/Forms/FormHeader";
-import { Paper, Box, Container, Button } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 export default function EventForm() {
   const [formData, setFormData] = useState({
-    'termsAndConditions': "",
+    termsAndConditions: "",
     organizationName: "",
     eventName: "",
     cleanupLocation: "",
@@ -59,50 +58,76 @@ export default function EventForm() {
     volunteerCount: "",
     consentToPublic: "",
   });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
+  let navigate = useNavigate();
+
   const handleChange = (name) => (e) => {
+    e.preventDefault();
     setFormData({ ...formData, [name]: e.target.value });
   };
 
-  console.log(formData)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    navigate(`/form-submitted`);
+    try {
+      await fetch("https://waste-no-time.herokuapp.com/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+    } catch (error) {
+      console.log("error", error.message);
+    }
+  };
+
+  const FormDisplay = () => {
+    if (step === 1) {
+      return (
+        <FirstStep
+          formData={formData}
+          step={step}
+          setStep={setStep}
+          handleChange={handleChange}
+        />
+      );
+    }
+    if (step === 2) {
+      return (
+        <SecondStep
+          formData={formData}
+          step={step}
+          setStep={setStep}
+          handleChange={handleChange}
+        />
+      );
+    }
+    if (step === 3) {
+      return (
+        <ThirdStep
+          formData={formData}
+          step={step}
+          setStep={setStep}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      );
+    } else {
+      return (
+        <TermsAndConditions
+          step={step}
+          setStep={setStep}
+          handleChange={handleChange}
+        />
+      );
+    }
+  };
 
   return (
     <div className="form">
-      <div className="progressbar">
-        <div
-          style={{ width: step === 0 ? "33.3%" : step == 1 ? "66.6%" : "100%" }}
-        ></div>
-      </div>
-      <div className="form-container">
-        <FormHeader />
-        <Routes>
-          <Route
-            element={
-              <FirstStep step={step} setStep={setStep}  handleChange={handleChange} />
-            }
-            path="/form/1"
-            exact={true}
-          />
-          <Route
-            element={
-              <SecondStep step={step} setStep={setStep} handleChange={handleChange} />
-            }
-            path="/form/2"
-          />
-          <Route
-            element={<ThirdStep handleChange={handleChange} />}
-            path="/form/3"
-          />
-          <Route
-            element={<FourthStep handleChange={handleChange} />}
-            path="/form/4"
-          />
-          <Route
-            element={<FinalPage handleChange={handleChange} />}
-            path="/form/finished"
-          />
-        </Routes>
-      </div>
+      <FormHeader />
+      <Grid container>{FormDisplay()}</Grid>
     </div>
   );
 }

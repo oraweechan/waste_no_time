@@ -1,119 +1,195 @@
-import { Box, Button, FormControlLabel, Grid, Typography } from "@mui/material";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { useState } from "react";
-import Checkbox from "@mui/material/Checkbox";
-import { useNavigate } from "react-router-dom";
+import { Grid, Typography } from "@mui/material";
+import FormField from "./FormField";
 
-export default function FirstStep({ handleChange, step, setStep }) {
-  const [expand, setExpand] = useState(false);
-  let navigate = useNavigate();
-  console.log(step)
-
-  const onSubmit = () => {
-    setStep((currStep) => currStep + 1);
-    navigate(`/form/2`);
-  };
-
-  const handleAccordion = () => {
-    if (expand) {
-      setExpand(false);
-    } else setExpand(true);
+export default function FirstStep({ handleChange, step, setStep, formData }) {
+  const handleNext = () => {
+    if (step > 0) {
+      setStep((currStep) => currStep + 1);
+    }
   };
 
   return (
-    <div className="formDetails1">
-      <Box component="form" onSubmit={onSubmit}>
-        <Grid justifyContent="center" container>
-          <Grid item xs={12}>
-            <Typography>
-              REVIEW THE GUIDELINES BELOW PRIOR TO SUBMISSION
-            </Typography>
-          </Grid>
+    <div className="form-details2">
+      <FormField
+        value={formData.organizationName}
+        handleChangeInput="organizationName"
+        handleChange={handleChange}
+        htmlFor="organizationName"
+        id="organizationName"
+        label="Organization Name"
+      />
+      <FormField
+        value={formData.eventName}
+        handleChangeInput="eventName"
+        handleChange={handleChange}
+        htmlFor="eventName"
+        id="eventName"
+        label="Event Name"
+      />
+      <FormField
+        value={formData.cleanupLocation}
+        handleChangeInput="cleanupLocation"
+        handleChange={handleChange}
+        htmlFor="cleanupLocation"
+        id="cleanupLocation"
+        label="Cleanup Event Location"
+      />
 
-          <Grid item>
-            <Accordion expanded={expand === true}>
-              <AccordionSummary
-              onClick={handleAccordion}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography align="left">
-                  The Department of Sanitation (DSNY) provides volunteers and
-                  community groups with tools (shovels, rakes and brooms),
-                  disposable supplies (bags and gloves), and trash collection.
-                  It is not necessary to borrow tools from DSNY to receive trash
-                  collection for your cleanup.
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography align="left" style={{ marginBottom: "1rem" }}>
-                  Volunteer Cleanups are intended to clean public streets and
-                  sidewalks, excluding parks and beaches. Tools may not be used
-                  to clean private property, such as vacant lots, yards,
-                  abandoned or occupied houses.
-                </Typography>
-                <Typography align="left" style={{ marginBottom: "1rem" }}>
-                  Trash is to be bagged and placed at an intersection or address
-                  on your cleanup route. The local offices will be notified of
-                  your event and bag placement. If the pickup location changes,
-                  you must notify us by email immediately.
-                </Typography>
-                <Typography align="left" style={{ marginBottom: "1rem" }}>
-                  It is your responsibility to pick up and return the tools
-                  borrowed from DSNY. DSNY loans one tool per volunteer. You
-                  will receive a tool loan confirmation email with the location
-                  and contact information.
-                </Typography>
-                <Typography align="left" style={{ marginBottom: "1rem" }}>
-                  Any damaged or missing equipment must be replaced by your
-                  group. Return replacement items along with the tools borrowed
-                  on your scheduled tool return date. Bags and gloves do not
-                  need to be returned.
-                </Typography>
-                <Typography align="left" style={{ marginBottom: "1rem" }}>
-                  DSNY requires two weeks' notice to schedule a Volunteer
-                  Cleanup. If there is a change to how many tools you need or
-                  where and when you want us to pick up the trash, 3-day notice
-                  is required. We also need to know about cancellations or
-                  changes to date, time and location as soon as possible.
-                </Typography>
-                <Typography align="left">
-                  DSNY reserves the right to list and promote your cleanup on
-                  its agency website and social media platforms. If you do not
-                  want your event listed, please check the box below.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
-          <Grid container justifyContent="center" onClick={handleAccordion}>
-            {!expand ? (
-              <Typography>CLICK TO EXPAND</Typography>
-            ) : (
-              <Typography>CLICK TO COLLAPSE</Typography>
-            )}
-            {!expand ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-          </Grid>
-          <FormControlLabel
-            label="I AGREE TO THESE TERMS AND CONDITIONS"
-            value="true"
-            control={
-              <Checkbox
-                onChange={handleChange("termsAndConditions")}
-                
-                defaultValue={false}
-                required
-              />
-            }
-          />
-        </Grid>
-        <Button type="submit" variant="contained">
-          Begin Application
-        </Button>
-      </Box>
+      <Grid item xs={12}>
+        <Typography>
+          Both contacts must be prepared to answer all questions for this
+          cleanup event.
+        </Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography>Primary Contact:</Typography>
+      </Grid>
+
+      <FormField
+        value={formData["primaryContact.firstName"]}
+        handleChangeInput="primaryContact.firstName"
+        handleChange={handleChange}
+        htmlFor="primaryContact.firstName"
+        id="primaryContact.firstName"
+        label="Name"
+        placeholder="First Name"
+      />
+      <FormField
+        value={formData["primaryContact.lastName"]}
+        handleChangeInput="primaryContact.lastName"
+        handleChange={handleChange}
+        htmlFor="primaryContact.lastName"
+        id="primaryContact.lastName"
+        label=""
+        placeholder="Last Name"
+      />
+      <FormField
+        value={formData["primaryContact.address"]}
+        handleChangeInput="primaryContact.address"
+        handleChange={handleChange}
+        htmlFor="primaryContact.address"
+        id="primaryContact.address"
+        label="Address"
+      />
+      <FormField
+        value={formData["primaryContact.mobilePhone"]}
+        handleChangeInput="primaryContact.mobilePhone"
+        handleChange={handleChange}
+        htmlFor="primaryContact.mobilePhone"
+        id="primaryContact.mobilePhone"
+        label="Mobile Phone"
+      />
+      <FormField
+        value={formData["primaryContact.email"]}
+        handleChangeInput="primaryContact.email"
+        handleChange={handleChange}
+        htmlFor="primaryContact.email"
+        id="primaryContact.email"
+        label="Email"
+      />
+
+      <Grid item xs={12}>
+        <Typography>Secondary Contact:</Typography>
+      </Grid>
+
+      <FormField
+        value={formData["secondaryContact.firstName"]}
+        handleChangeInput="secondaryContact.firstName"
+        handleChange={handleChange}
+        htmlFor="secondaryContact.firstName"
+        id="secondaryContact.firstName"
+        label="Name"
+        placeholder="First Name"
+      />
+      <FormField
+        value={formData["secondaryContact.lastName"]}
+        handleChangeInput="secondaryContact.lastName"
+        handleChange={handleChange}
+        htmlFor="secondaryContact.lastName"
+        id="secondaryContact.lastName"
+        placeholder="Last Name"
+      />
+      <FormField
+        value={formData["secondaryContact.address"]}
+        handleChangeInput="secondaryContact.address"
+        handleChange={handleChange}
+        htmlFor="secondaryContact.address"
+        id="secondaryContact.address"
+        label="Address"
+      />
+      <FormField
+        value={formData["secondaryContact.mobilePhone"]}
+        handleChangeInput="secondaryContact.mobilePhone"
+        handleChange={handleChange}
+        htmlFor="secondaryContact.mobilePhone"
+        id="secondaryContact.mobilePhone"
+        label="Mobile Phone"
+      />
+      <FormField
+        value={formData["secondaryContact.email"]}
+        handleChangeInput="secondaryContact.email"
+        handleChange={handleChange}
+        htmlFor="secondaryContact.email"
+        id="secondaryContact.email"
+        label="Email"
+      />
+      <FormField
+        value={formData["dateCleanup.date"]}
+        handleChangeInput="dateCleanup.date"
+        handleChange={handleChange}
+        htmlFor="dateCleanup.date"
+        id="dateCleanup.date"
+        label="Date of Cleanup"
+      />
+      <FormField
+        value={formData["dateCleanup.startTime"]}
+        handleChangeInput="dateCleanup.startTime"
+        handleChange={handleChange}
+        htmlFor="dateCleanup.startTime"
+        id="dateCleanup.startTime"
+        label="Start Time"
+      />
+      <FormField
+        value={formData["dateCleanup.endTime"]}
+        handleChangeInput="dateCleanup.endTime"
+        handleChange={handleChange}
+        htmlFor="dateCleanup.endTime"
+        id="dateCleanup.endTime"
+        label="End Time"
+      />
+      <FormField
+        value={formData["rainDate.date"]}
+        handleChangeInput="rainDate.date"
+        handleChange={handleChange}
+        htmlFor="rainDate.date"
+        id="rainDate.date"
+        label="Rain Date"
+      />
+      <FormField
+        value={formData["rainDate.startTime"]}
+        handleChangeInput="rainDate.startTime"
+        handleChange={handleChange}
+        htmlFor="rainDate.startTime"
+        id="rainDate.startTime"
+        placeholder="Start Time"
+      />
+      <FormField
+        value={formData["rainDate.endTime"]}
+        handleChangeInput="rainDate.endTime"
+        handleChange={handleChange}
+        htmlFor="rainDate.endTime"
+        id="rainDate.endTime"
+        placeholder="End Time"
+      />
+
+      <Grid item xs={12}>
+        <button disabled={step === 1} onClick={handleNext}>
+          Back
+        </button>
+        <button onClick={handleNext}>
+          {step === 4 - 1 ? "Submit" : "Next"}
+        </button>
+      </Grid>
     </div>
   );
 }
