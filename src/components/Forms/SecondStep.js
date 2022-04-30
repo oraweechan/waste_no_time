@@ -3,7 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
 
 export default function SecondStep({ formData, handleChange, step, setStep }) {
-  console.log(step);
+  // console.log(step);
   const handleNext = () => {
     if (step > 0) {
       setStep((currStep) => currStep + 1);
