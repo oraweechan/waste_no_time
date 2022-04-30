@@ -1,0 +1,24 @@
+.section4-div {
+  padding: 3vw;
+  padding-bottom: 4.5vw;
+}
+
+.section4-div h4 {
+  margin-top: -20vw !important;
+}
+
+.all-cards-section4 {
+  margin-top: 3vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card1-title,
+.card2-title {
+  font-size: 3vw;
+}
+
+.card1-text,
+.card2-text {
+  font-size: 1.5vw;
+}

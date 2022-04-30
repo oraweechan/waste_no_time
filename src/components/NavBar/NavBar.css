@@ -1,0 +1,20 @@
+.navBar-Container {
+  /* padding: 0.2vw !important; */
+}
+
+.me-auto {
+  position: absolute !important;
+  margin-left: 47vw;
+  /* background-color: yellow !important; */
+}
+
+.navLink {
+  margin: 0.3vw;
+  font-size: 1.4vw;
+  color: black !important;
+  font-weight: bold;
+}
+
+.navLink:hover {
+  color: rgb(247, 197, 59) !important;
+}

@@ -1,0 +1,15 @@
+.section-div {
+  padding: 3.5vw;
+}
+
+.section-div h1 {
+  font-size: 4vw !important;
+  font-weight: bold;
+}
+
+.section-div p {
+  width: 75vw;
+  margin: auto;
+  font-size: 1.5vw;
+  margin-top: 1.5vw;
+}

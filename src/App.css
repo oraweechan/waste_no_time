@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+Button {
+  background-color: rgb(77, 166, 107) !important;
+  border: 0.3vw solid white !important;
+}

@@ -1,0 +1,18 @@
+.section5-div {
+  background-color: rgb(235, 233, 230);
+  padding: 3vw;
+  padding-bottom: 4.5vw;
+}
+
+.all-section5-cards {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -18vw;
+  text-align: left;
+}
+
+.all-events-button {
+  margin-top: 4vw;
+  margin-bottom: -1vw;
+  font-size: 1.5em;
+}
