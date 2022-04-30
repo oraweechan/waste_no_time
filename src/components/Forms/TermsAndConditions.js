@@ -23,7 +23,7 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
   };
 
   return (
-    <div className="formDetails1">
+    <form className="formDetails1">
       <Grid justifyContent="center" container>
         <Grid item xs={12}>
           <Typography>
@@ -95,6 +95,7 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
           {!expand ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </Grid>
         <FormControlLabel
+        required
           label="I AGREE TO THESE TERMS AND CONDITIONS"
           value="true"
           control={
@@ -109,6 +110,6 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
       <button onClick={onSubmit} type="submit" variant="contained">
         Begin Application
       </button>
-    </div>
+    </form>
   );
 }

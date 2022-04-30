@@ -9,7 +9,7 @@ export default function NavBar() {
     <>
       <Navbar bg="light" variant="light">
         <Container className="navBar-Container">
-          <Navbar.Brand className="sfLogo" href="#home">
+          <Navbar.Brand className="sfLogo" href="/">
             <img
               src="/SanitationFoundationLogo.png"
               width="170vw"
@@ -82,8 +82,8 @@ export default function NavBar() {
               id="basic-nav-dropdown"
             >
               <NavDropdown.Item href="#action/3.1">attend</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.1">
-                <Link to="/form">volunteer</Link>
+              <NavDropdown.Item href="/form">
+              volunteer
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">partner</NavDropdown.Item>
             </NavDropdown>

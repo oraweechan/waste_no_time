@@ -1,4 +1,4 @@
-import { Grid, Typography, FormControlLabel } from "@mui/material";
+import { Grid, Typography, FormControlLabel, Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
 
@@ -39,7 +39,7 @@ export default function ThirdStep({
         htmlFor="brooms"
         handleChangeInput="brooms"
         id="brooms"
-        label="brooms"
+        label="Brooms"
       />
 
       <FormField
@@ -48,7 +48,7 @@ export default function ThirdStep({
         htmlFor="shovels"
         handleChangeInput="shovels"
         id="shovels"
-        label="shovels"
+        label="Shovels"
       />
       <FormField
         value={formData.rakes}
@@ -56,7 +56,7 @@ export default function ThirdStep({
         htmlFor="rakes"
         handleChangeInput="rakes"
         id="rakes"
-        label="rakes"
+        label="Rakes"
       />
       <FormField
         value={formData.litterPickers}
@@ -64,7 +64,7 @@ export default function ThirdStep({
         htmlFor="litterPickers"
         handleChangeInput="litterPickers"
         id="litterPickers"
-        label="litterPickers"
+        label="Litter Pickers"
       />
       <FormField
         value={formData.gloves}
@@ -72,7 +72,7 @@ export default function ThirdStep({
         htmlFor="gloves"
         handleChangeInput="gloves"
         id="gloves"
-        label="gloves"
+        label="Gloves"
       />
       <FormField
         value={formData.volunteerCount}
@@ -80,14 +80,18 @@ export default function ThirdStep({
         htmlFor="volunteerCount"
         handleChangeInput="volunteerCount"
         id="volunteerCount"
-        label="volunteerCount"
+        label="How many volunteers do you expect?*"
       />
+     
       <Typography>
         The Department of Sanitation will post your event publicly online for
         other volunteers to view and join. Do you consent to have your event
         shared publicly?
       </Typography>
+  
       <Typography>Please select one option below</Typography>
+     
+     
       <Grid item xs={6}>
         {" "}
         <FormControlLabel
@@ -116,8 +120,10 @@ export default function ThirdStep({
           }
         />
       </Grid>
+      <Box p={3} display="flex" justifyContent="space-between">
       <button onClick={handlePrev}>Back</button>
       <button onClick={handleSubmit}>Submit</button>
+      </Box>
     </div>
   );
 }

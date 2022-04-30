@@ -1,0 +1,14 @@
+.form {
+    padding: 3rem;
+    background-color: #acacac;
+  
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /* width: 800px; */
+}
+
+.formContent {
+    justify-content: center;
+    display: flex;
+}

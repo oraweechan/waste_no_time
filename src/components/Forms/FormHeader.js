@@ -1,8 +1,8 @@
-import React from "react";
+import './FormHeader.css'
 
 export default function FormHeader() {
   return (
-    <div>
+    <div className="formHeader">
       <h3>Volunteer Group Sign-Up Form</h3>
     </div>
   );

@@ -5,7 +5,8 @@ import ThirdStep from "../components/Forms/ThirdStep";
 import FormHeader from "../components/Forms/FormHeader";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
+import "./EventForm.css";
 
 export default function EventForm() {
   const [formData, setFormData] = useState({
@@ -126,8 +127,13 @@ export default function EventForm() {
 
   return (
     <div className="form">
-      <FormHeader />
-      <Grid container>{FormDisplay()}</Grid>
+      <Paper>
+        <FormHeader />
+        <div className="formContent">
+{FormDisplay()}
+        </div>
+        {/* <Grid container justifyContent={'center'}>{FormDisplay()}</Grid> */}
+      </Paper>
     </div>
   );
 }

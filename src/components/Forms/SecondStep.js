@@ -1,6 +1,7 @@
-import { Grid, Typography, FormControlLabel } from "@mui/material";
+import { Grid, Typography, FormControlLabel, Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
+import './SecondStep.css';
 
 export default function SecondStep({ formData, handleChange, step, setStep }) {
   // console.log(step);
@@ -228,8 +229,13 @@ export default function SecondStep({ formData, handleChange, step, setStep }) {
           }
         />
       </Grid>
+      <Box  p={3}  display="flex" justifyContent="space-between">
       <button onClick={handlePrev}>Back</button>
       <button onClick={handleNext}>{step === 4 ? "Submit" : "Next"}</button>
+      </Box>
+ 
+    
+
     </div>
   );
 }

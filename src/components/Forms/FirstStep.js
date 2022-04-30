@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import FormField from "./FormField";
 
 export default function FirstStep({ handleChange, step, setStep, formData }) {
@@ -182,14 +182,14 @@ export default function FirstStep({ handleChange, step, setStep, formData }) {
         placeholder="End Time"
       />
 
-      <Grid item xs={12}>
+      <Box display="flex" p={3} justifyContent="space-between">
         <button disabled={step === 1} onClick={handleNext}>
           Back
         </button>
         <button onClick={handleNext}>
           {step === 4 - 1 ? "Submit" : "Next"}
         </button>
-      </Grid>
+      </Box>
     </div>
   );
 }
