@@ -7,10 +7,10 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function FirstStep({ handleChange, step, setStep }) {
+export default function TermsAndConditions({ handleChange, step, setStep }) {
   const [expand, setExpand] = useState(false);
 
-  console.log(step);
+  // console.log(step);
 
   const onSubmit = () => {
     setStep((currStep) => currStep + 1);
