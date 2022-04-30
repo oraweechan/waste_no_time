@@ -10,11 +10,18 @@ import "./TermsAndConditions.css";
 
 export default function TermsAndConditions({ handleChange, setStep, handleNext }) {
   const [expand, setExpand] = useState(false);
+  const [checkboxValue, setCheckboxValue] = useState(false);
 
   const handleAccordion = () => {
     if (expand) {
       setExpand(false);
     } else setExpand(true);
+  };
+
+  const handleCheckbox = (value) => {
+    if (checkboxValue === true) {
+      setCheckboxValue(true);
+    } else setCheckboxValue(false);
   };
 
   return (
@@ -97,7 +104,8 @@ export default function TermsAndConditions({ handleChange, setStep, handleNext }
         <FormControlLabel
           required
           label="I AGREE TO THESE TERMS AND CONDITIONS"
-          value="true"
+          value={checkboxValue}
+          onClick={handleCheckbox}
           control={
             <Checkbox
               onChange={handleChange("termsAndConditions")}

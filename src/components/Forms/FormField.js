@@ -11,22 +11,25 @@ export default function FormField({
   value = "",
 }) {
   return (
-    <Grid container spacing={15}>
-      <Grid item xs={6}>
-        <label htmlFor={htmlFor}>
-          <strong>{label}</strong>
-        </label>
-      </Grid>
-      <Grid item xs={6}>
-        <input
-          className="formInput"
-          value={value}
-          placeholder={placeholder}
-          id={id}
-          type="text"
-          onChange={handleChange(`${handleChangeInput}`)}
-        />
-      </Grid>
+    <Grid container >
+    <Grid item xs={6}>
+      <label htmlFor={htmlFor}>
+        <strong>{label}</strong>
+      </label>
     </Grid>
+    <Grid item xs={6}>
+      <input
+        className="formInput"
+        value={value}
+        placeholder={placeholder}
+        id={id}
+        type="text"
+        onChange={handleChange(`${handleChangeInput}`)}
+      />
+    </Grid>
+  </Grid>
+
+      
+
   );
 }

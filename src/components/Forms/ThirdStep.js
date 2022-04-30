@@ -20,11 +20,11 @@ export default function ThirdStep({
       </Typography>
       <FormControlLabel
         label="Check if you do not require any supplies"
-        value="true"
+       value={"on" ? "false" : "true"}
         control={
           <Checkbox
             onChange={handleChange("requiredSupplies")}
-            value={false}
+            defaultValue={false}
             required
           />
         }

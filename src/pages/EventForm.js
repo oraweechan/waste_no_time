@@ -5,7 +5,6 @@ import ThirdStep from "../components/Forms/ThirdStep";
 import FormHeader from "../components/Forms/FormHeader";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Paper, Box } from "@mui/material";
 import "./EventForm.css";
 import FormStepper from "../components/Forms/FormStepper";
 
@@ -62,6 +61,8 @@ export default function EventForm() {
   });
   const [step, setStep] = useState(0);
   let navigate = useNavigate();
+
+console.log(formData)
 
   const handleChange = (name) => (e) => {
     e.preventDefault();
