@@ -1,22 +1,17 @@
 import { Grid, Typography, FormControlLabel, Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
-import './SecondStep.css';
+import "./SecondStep.css";
 
-export default function SecondStep({ formData, handleChange, step, setStep }) {
-  // console.log(step);
-  const handleNext = () => {
-    if (step > 0) {
-      setStep((currStep) => currStep + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    setStep((currStep) => currStep - 1);
-  };
-
+export default function SecondStep({
+  formData,
+  handleChange,
+  step,
+  handleNext,
+  handlePrev,
+}) {
   return (
-    <div className="form-details3">
+    <div className="form-details2">
       <FormField
         value={formData["mainStreetCleaning1.mainStreet"]}
         handleChange={handleChange}
@@ -229,13 +224,10 @@ export default function SecondStep({ formData, handleChange, step, setStep }) {
           }
         />
       </Grid>
-      <Box  p={3}  display="flex" justifyContent="space-between">
-      <button onClick={handlePrev}>Back</button>
-      <button onClick={handleNext}>{step === 4 ? "Submit" : "Next"}</button>
+      <Box p={3} display="flex" justifyContent="space-between">
+        <button onClick={handlePrev}>Back</button>
+        <button onClick={handleNext}>{step === 4 ? "Submit" : "Next"}</button>
       </Box>
- 
-    
-
     </div>
   );
 }

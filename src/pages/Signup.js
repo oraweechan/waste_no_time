@@ -1,4 +1,3 @@
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,19 +12,32 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 const theme = createTheme({
-  
+    color: "white",
 });
 
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+export default function SignUp() {
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const newUser = {
+            email: data.get('email'),
+            password: data.get('password'),
+          }
+        console.log(JSON.stringify(newUser))
+        try {
+          await fetch("https://waste-no-time.herokuapp.com/users/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(newUser),
+          });
+        } catch (error) {
+          console.log("error", error.message);
+        }
+      };
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,7 +53,7 @@ export default function SignIn() {
         >
           
           <Typography component="h3" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -69,17 +81,18 @@ export default function SignIn() {
               label="Remember me"
             />
             <Button
+            style={theme}
               type="submit"
               fullWidth
               variant="outline"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Create Account
             </Button>
             <Grid container mb={6}>
               <Grid item>
-                <Link href="/sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/sign-in" variant="body2">
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>

@@ -1,15 +1,15 @@
 import { Grid, Typography, Box } from "@mui/material";
 import FormField from "./FormField";
 
-export default function FirstStep({ handleChange, step, setStep, formData }) {
-  const handleNext = () => {
-    if (step > 0) {
-      setStep((currStep) => currStep + 1);
-    }
-  };
-
+export default function FirstStep({
+  handleChange,
+  step,
+  formData,
+  handleNext,
+  handlePrev,
+}) {
   return (
-    <div className="form-details2">
+    <div className="form-details1">
       <FormField
         value={formData.organizationName}
         handleChangeInput="organizationName"
@@ -165,27 +165,27 @@ export default function FirstStep({ handleChange, step, setStep, formData }) {
         id="rainDate.date"
         label="Rain Date"
       />
-      <FormField
-        value={formData["rainDate.startTime"]}
-        handleChangeInput="rainDate.startTime"
-        handleChange={handleChange}
-        htmlFor="rainDate.startTime"
-        id="rainDate.startTime"
-        placeholder="Start Time"
-      />
-      <FormField
-        value={formData["rainDate.endTime"]}
-        handleChangeInput="rainDate.endTime"
-        handleChange={handleChange}
-        htmlFor="rainDate.endTime"
-        id="rainDate.endTime"
-        placeholder="End Time"
-      />
+      <Box display="flex" ml={-30} mr={20} gap={6}>
+        <FormField
+          value={formData["rainDate.startTime"]}
+          handleChangeInput="rainDate.startTime"
+          handleChange={handleChange}
+          htmlFor="rainDate.startTime"
+          id="rainDate.startTime"
+          placeholder="Start Time"
+        />{" "}
+        <FormField
+          value={formData["rainDate.endTime"]}
+          handleChangeInput="rainDate.endTime"
+          handleChange={handleChange}
+          htmlFor="rainDate.endTime"
+          id="rainDate.endTime"
+          placeholder="End Time"
+        />
+      </Box>
 
       <Box display="flex" p={3} justifyContent="space-between">
-        <button disabled={step === 1} onClick={handleNext}>
-          Back
-        </button>
+        <button onClick={handlePrev}>Back</button>
         <button onClick={handleNext}>
           {step === 4 - 1 ? "Submit" : "Next"}
         </button>

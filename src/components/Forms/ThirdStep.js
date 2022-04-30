@@ -1,20 +1,16 @@
 import { Grid, Typography, FormControlLabel, Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
+import './ThirdStep.css';
 
 export default function ThirdStep({
   formData,
   handleSubmit,
   handleChange,
-  step,
-  setStep,
+  handlePrev,
 }) {
-  const handlePrev = () => {
-    setStep((currStep) => currStep - 1);
-  };
-  // console.log(formData);
   return (
-    <div className="form-details4">
+    <div className="form-details3">
       <Typography>
         How many tools do you need? We only provide one tool and one pair of
         gloves per volunteer.
@@ -82,16 +78,15 @@ export default function ThirdStep({
         id="volunteerCount"
         label="How many volunteers do you expect?*"
       />
-     
+
       <Typography>
         The Department of Sanitation will post your event publicly online for
         other volunteers to view and join. Do you consent to have your event
         shared publicly?
       </Typography>
-  
+
       <Typography>Please select one option below</Typography>
-     
-     
+
       <Grid item xs={6}>
         {" "}
         <FormControlLabel
@@ -121,8 +116,8 @@ export default function ThirdStep({
         />
       </Grid>
       <Box p={3} display="flex" justifyContent="space-between">
-      <button onClick={handlePrev}>Back</button>
-      <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handlePrev}>Back</button>
+        <button onClick={handleSubmit}>Submit</button>
       </Box>
     </div>
   );

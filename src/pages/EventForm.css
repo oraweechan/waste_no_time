@@ -1,7 +1,7 @@
 .form {
     padding: 3rem;
     background-color: #acacac;
-  
+ 
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -11,4 +11,13 @@
 .formContent {
     justify-content: center;
     display: flex;
+    flex-direction: column;
+
+}
+
+.form-detail {
+    max-width: 900px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 2rem;
 }

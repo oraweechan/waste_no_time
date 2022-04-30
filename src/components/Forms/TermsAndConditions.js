@@ -1,4 +1,4 @@
-import { FormControlLabel, Grid, Typography } from "@mui/material";
+import { FormControlLabel, Grid, Typography, Box } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -6,15 +6,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
+import "./TermsAndConditions.css";
 
-export default function TermsAndConditions({ handleChange, step, setStep }) {
+export default function TermsAndConditions({ handleChange, setStep, handleNext }) {
   const [expand, setExpand] = useState(false);
-
-  // console.log(step);
-
-  const onSubmit = () => {
-    setStep((currStep) => currStep + 1);
-  };
 
   const handleAccordion = () => {
     if (expand) {
@@ -25,10 +20,10 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
   return (
     <form className="formDetails1">
       <Grid justifyContent="center" container>
-        <Grid item xs={12}>
-          <Typography>
+        <Grid item xs={12} justifyContent="center" container>
+          <Box sx={{ fontWeight: "bold", m: 1, fontSize: 18 }}>
             REVIEW THE GUIDELINES BELOW PRIOR TO SUBMISSION
-          </Typography>
+          </Box>
         </Grid>
 
         <Grid item>
@@ -86,7 +81,12 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
             </AccordionDetails>
           </Accordion>
         </Grid>
-        <Grid container justifyContent="center" onClick={handleAccordion}>
+        <Grid
+          container
+          justifyContent="center"
+          onClick={handleAccordion}
+          mt={3}
+        >
           {!expand ? (
             <Typography>CLICK TO EXPAND</Typography>
           ) : (
@@ -95,7 +95,7 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
           {!expand ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </Grid>
         <FormControlLabel
-        required
+          required
           label="I AGREE TO THESE TERMS AND CONDITIONS"
           value="true"
           control={
@@ -107,9 +107,11 @@ export default function TermsAndConditions({ handleChange, step, setStep }) {
           }
         />
       </Grid>
-      <button onClick={onSubmit} type="submit" variant="contained">
-        Begin Application
-      </button>
+      <div className="buttonBegin">
+        <button onClick={handleNext} type="submit" variant="contained">
+          Begin Application
+        </button>
+      </div>
     </form>
   );
 }

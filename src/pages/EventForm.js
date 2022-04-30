@@ -5,8 +5,9 @@ import ThirdStep from "../components/Forms/ThirdStep";
 import FormHeader from "../components/Forms/FormHeader";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import "./EventForm.css";
+import FormStepper from "../components/Forms/FormStepper";
 
 export default function EventForm() {
   const [formData, setFormData] = useState({
@@ -83,40 +84,64 @@ export default function EventForm() {
     }
   };
 
+  const handleNext = () => {
+      setStep((currStep) => currStep + 1);
+  };
+
+  const handlePrev = () => {
+    setStep((currStep) => currStep - 1);
+  };
+
   const FormDisplay = () => {
     if (step === 1) {
       return (
-        <FirstStep
-          formData={formData}
-          step={step}
-          setStep={setStep}
-          handleChange={handleChange}
-        />
+        <>
+          <FormHeader />
+          <FirstStep
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+            formData={formData}
+            step={step}
+            setStep={setStep}
+            handleChange={handleChange}
+          />
+        </>
       );
     }
     if (step === 2) {
       return (
-        <SecondStep
-          formData={formData}
-          step={step}
-          setStep={setStep}
-          handleChange={handleChange}
-        />
+        <>
+          <FormHeader />
+          <SecondStep
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+            formData={formData}
+            step={step}
+            setStep={setStep}
+            handleChange={handleChange}
+          />
+        </>
       );
     }
     if (step === 3) {
       return (
-        <ThirdStep
-          formData={formData}
-          step={step}
-          setStep={setStep}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        <>
+          <FormHeader />
+          <ThirdStep
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+            formData={formData}
+            step={step}
+            setStep={setStep}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </>
       );
     } else {
       return (
         <TermsAndConditions
+        handleNext={handleNext}
           step={step}
           setStep={setStep}
           handleChange={handleChange}
@@ -127,13 +152,14 @@ export default function EventForm() {
 
   return (
     <div className="form">
-      <Paper>
-        <FormHeader />
-        <div className="formContent">
-{FormDisplay()}
-        </div>
+      <div className="form-detail">
+        {/* <Paper > */}
+        <FormStepper step={step} />
+
+        <div className="formContent">{FormDisplay()}</div>
         {/* <Grid container justifyContent={'center'}>{FormDisplay()}</Grid> */}
-      </Paper>
+        {/* </Paper> */}
+      </div>
     </div>
   );
 }
