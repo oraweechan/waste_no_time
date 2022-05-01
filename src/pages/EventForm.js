@@ -88,7 +88,6 @@ export default function EventForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate(`/form-submitted`);
     try {
       await fetch("https://waste-no-time.herokuapp.com/events", {
         method: "POST",
@@ -100,6 +99,7 @@ export default function EventForm() {
     } catch (error) {
       console.log("error", error.message);
     }
+    navigate(`/form-submitted`);
   };
 
   const handleNext = () => {
