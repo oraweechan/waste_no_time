@@ -1,30 +1,34 @@
 import { Grid, Typography, FormControlLabel, Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormField from "./FormField";
-import './ThirdStep.css';
+import "./ThirdStep.css";
 
 export default function ThirdStep({
   formData,
   handleSubmit,
   handleChange,
+  handleCheckbox,
   handlePrev,
+  handleCheckboxReverse,
 }) {
   return (
     <div className="form-details3">
-      <Typography>
+      <Typography mb={2}>
         How many tools do you need? We only provide one tool and one pair of
         gloves per volunteer.
       </Typography>
-      <Typography>
+      <Typography mb={2}>
         Please note - Bags and gloves are supplied depending on availability
+      </Typography>
+      <Typography color={"red"} mb={2}>
+        (*) indicates a required field.
       </Typography>
       <FormControlLabel
         label="Check if you do not require any supplies"
-       value={"on" ? "false" : "true"}
         control={
           <Checkbox
-            onChange={handleChange("requiredSupplies")}
-            defaultValue={false}
+            onChange={handleCheckboxReverse("requireSupplies")}
+            value={false}
             required
           />
         }
@@ -79,13 +83,15 @@ export default function ThirdStep({
         label="How many volunteers do you expect?*"
       />
 
-      <Typography>
+      <Typography mt={6}>
         The Department of Sanitation will post your event publicly online for
         other volunteers to view and join. Do you consent to have your event
         shared publicly?
       </Typography>
 
-      <Typography>Please select one option below</Typography>
+      <Typography mt={2} sx={{ fontWeight: "bold" }}>
+        Please select one option below:*
+      </Typography>
 
       <Grid item xs={6}>
         {" "}
@@ -94,7 +100,7 @@ export default function ThirdStep({
           value="true"
           control={
             <Checkbox
-              onChange={handleChange("consentToPublic")}
+              onChange={handleCheckbox("consentToPublic")}
               defaultValue={false}
               required
             />
@@ -108,7 +114,7 @@ export default function ThirdStep({
           value="false"
           control={
             <Checkbox
-              onChange={handleChange("consentToPublic")}
+              onChange={handleCheckboxReverse("consentToPublic")}
               defaultValue={false}
               required
             />

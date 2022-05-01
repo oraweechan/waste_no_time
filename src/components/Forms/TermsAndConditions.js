@@ -8,9 +8,8 @@ import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import "./TermsAndConditions.css";
 
-export default function TermsAndConditions({ handleChange, setStep, handleNext }) {
+export default function TermsAndConditions({ handleChange, handleNext }) {
   const [expand, setExpand] = useState(false);
-  const [checkboxValue, setCheckboxValue] = useState(false);
 
   const handleAccordion = () => {
     if (expand) {
@@ -18,14 +17,8 @@ export default function TermsAndConditions({ handleChange, setStep, handleNext }
     } else setExpand(true);
   };
 
-  const handleCheckbox = (value) => {
-    if (checkboxValue === true) {
-      setCheckboxValue(true);
-    } else setCheckboxValue(false);
-  };
-
   return (
-    <form className="formDetails1">
+    <div className="formDetails1">
       <Grid justifyContent="center" container>
         <Grid item xs={12} justifyContent="center" container>
           <Box sx={{ fontWeight: "bold", m: 1, fontSize: 18 }}>
@@ -104,8 +97,6 @@ export default function TermsAndConditions({ handleChange, setStep, handleNext }
         <FormControlLabel
           required
           label="I AGREE TO THESE TERMS AND CONDITIONS"
-          value={checkboxValue}
-          onClick={handleCheckbox}
           control={
             <Checkbox
               onChange={handleChange("termsAndConditions")}
@@ -120,6 +111,6 @@ export default function TermsAndConditions({ handleChange, setStep, handleNext }
           Begin Application
         </button>
       </div>
-    </form>
+    </div>
   );
 }

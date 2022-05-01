@@ -1,9 +1,9 @@
 import './FormHeader.css'
 
-export default function FormHeader() {
+export default function FormHeader({ text="" }) {
   return (
     <div className="formHeader">
-      <h3>Volunteer Group Sign-Up Form</h3>
+      <h3>{text}</h3>
     </div>
   );
 }
