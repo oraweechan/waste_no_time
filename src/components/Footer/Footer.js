@@ -16,25 +16,27 @@ export default function Footer() {
         />
         <div className="footer-text">
           <Typography fontSize={13} color={"white"}>
-            The Sanitation Foundation, formerly known as the Foundation for New
-            York's Strongest, is the official nonprofit partner of the New York
-            City Department of Sanitation.
+            The Sanitation Foundation, formerly known as the Foundation for New York's Strongest, is
+            the official nonprofit partner of the New York City Department of Sanitation.
           </Typography>
-          <Typography fontSize={13}  color={"white"}>
-            The Sanitation Foundation a not-for-profit organization, and is tax
-            exempt under Section 501(c)(3) of the Internal Revenue Code. Federal
-            EIN (tax ID) number 81-3523248.
+          <Typography fontSize={13} color={"white"}>
+            The Sanitation Foundation a not-for-profit organization, and is tax exempt under Section
+            501(c)(3) of the Internal Revenue Code. Federal EIN (tax ID) number 81-3523248.
           </Typography>
           <div className="address">
-            <Typography fontSize={13}  color={"white"}>
+            <Typography fontSize={13} color={"white"}>
               124 Worth Street, 7th Floor, Room 722
             </Typography>
-            <Typography fontSize={13}  color={"white"}>New York, NY 10013</Typography>
-            <Typography fontSize={13}  color={"white"}>646-885-4928</Typography>
-            <Typography fontSize={13}  style={{ color: "orange" }}>
+            <Typography fontSize={13} color={"white"}>
+              New York, NY 10013
+            </Typography>
+            <Typography fontSize={13} color={"white"}>
+              646-885-4928
+            </Typography>
+            <Typography fontSize={13} style={{ color: "orange" }}>
               info@sanitationfoundation.org
             </Typography>
-            <Typography fontSize={13}  color={"white"}>
+            <Typography fontSize={13} color={"white"}>
               ©️2020 sanitation foundation, Inc. All rights reserved.
             </Typography>
           </div>

@@ -6,32 +6,35 @@ import Checkbox from "@mui/material/Checkbox";
 import FormField from "../components/Forms/FormField.js";
 import "../components/Forms/ThirdStep.css";
 
-export default function EventReport() {
+export default function EventReport({ event }) {
   const [numberOfBagsCollected, setNumberOfBagsCollected] = useState(0);
   const [numberOfVolunteers, setNumberOfVolunteers] = useState(0);
-  const [beforeImages, setBeforeImages] = useState([]);
-  const [afterImages, setAfterImages] = useState([]);
-  const [eventID, setEventID] = useState(0);
+  const [beforeImages, setBeforeImages] = useState("");
+  const [afterImages, setAfterImages] = useState("");
+  const [eventsList, setEventsList] = useState(event);
+  const [eventID, setEventID] = useState("");
 
   let imagesPreview = [];
 
-  const beforeImageSelectHandler = (image) => {
-    for (let i = 0; i < image.target.files.length; i++) {
-      beforeImages.push(image.target.files[i]);
-      imagesPreview.push(URL.createObjectURL(image.target.files[i]));
-    }
-    console.log(beforeImages);
-    console.log(imagesPreview);
-  };
+  console.log(event);
 
-  const afterImageSelectHandler = (image) => {
-    for (let i = 0; i < image.target.files.length; i++) {
-      afterImages.push(image.target.files[i]);
-      imagesPreview.push(URL.createObjectURL(image.target.files[i]));
-    }
-    console.log(afterImages);
-    console.log(imagesPreview);
-  };
+  // const beforeImageSelectHandler = (image) => {
+  //   for (let i = 0; i < image.target.files.length; i++) {
+  //     beforeImages.push(image.target.files[i]);
+  //     imagesPreview.push(URL.createObjectURL(image.target.files[i]));
+  //   }
+  //   console.log(beforeImages);
+  //   console.log(imagesPreview);
+  // };
+
+  // const afterImageSelectHandler = (image) => {
+  //   for (let i = 0; i < image.target.files.length; i++) {
+  //     afterImages.push(image.target.files[i]);
+  //     imagesPreview.push(URL.createObjectURL(image.target.files[i]));
+  //   }
+  //   console.log(afterImages);
+  //   console.log(imagesPreview);
+  // };
 
   const handleBagChange = (e) => {
     setNumberOfBagsCollected(e.target.value);
@@ -47,23 +50,55 @@ export default function EventReport() {
     // console.log(e.target.picturesFromBefore.files);
     // console.log(e.target.picturesFromAfter.files);
 
+    // e.preventDefault();
+    // console.log(e.target.picturesFromBefore.value);
+    // fetch("http://localhost:8080/eventsreport", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     numberOfVolunteers: e.target.numberOfVolunteers.value,
+    //     numberOfBagsCollected: e.target.numberOfBagsCollected.value,
+    //     beforePictures: e.target.picturesFromBefore.value,
+    //     afterPictures: e.target.picturesFromAfter.value,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     setNumberOfBagsCollected(0);
+    //     setNumberOfVolunteers(0);
+    //     setBeforeImages([]);
+    //     setAfterImages([]);
+    //   })
+    //   .catch((error) => console.log(error));
+
     e.preventDefault();
-    fetch("http://localhost:8080/eventsreport", {
-      method: "POST",
+    console.log(e.target.picturesFromBefore.value);
+    fetch("https://waste-no-time.herokuapp.com/events/" + "626f7307b63837e6e691dde5", {
+      // id will be replaced with event._id
+      method: "PUT",
       body: JSON.stringify({
-        numberOfVolunteers: e.target.numberOfVolunteers.value,
-        numberOfBagsCollected: e.target.numberOfBagsCollected.value,
-        beforePictures: e.target.picturesFromBefore.files,
-        afterPictures: e.target.picturesFromAfter.files,
+        numOfVolunteers: e.target.numberOfVolunteers.value,
+        numOfBags: e.target.numberOfBagsCollected.value,
+        imgBefore: e.target.picturesFromBefore.value,
+        imgAfter: e.target.picturesFromAfter.value,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
+        // const findIndex = eventsList.findIndex((event) => event._id === data.data._id);
+        // const copyEvents = [...eventsList];
+        // console.log(copyEvents);
+        // // copyEvents[findIndex] = data.data;
+        // setEventsList(copyEvents);
+        //
         console.log(data);
         setNumberOfBagsCollected(0);
         setNumberOfVolunteers(0);
@@ -129,9 +164,10 @@ export default function EventReport() {
                   <input
                     className="formInput"
                     multiple
-                    type="file"
+                    type="text"
+                    placeholder="URL"
                     name="picturesFromBefore"
-                    onChange={beforeImageSelectHandler}
+                    // onChange={beforeImageSelectHandler}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -143,9 +179,10 @@ export default function EventReport() {
                   <input
                     className="formInput"
                     multiple
-                    type="file"
+                    type="text"
+                    placeholder="URL"
                     name="picturesFromAfter"
-                    onChange={afterImageSelectHandler}
+                    // onChange={afterImageSelectHandler}
                   />
                 </Grid>
                 <input type="submit" value="Submit" />
