@@ -8,28 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import FinalPage from "./components/Forms/FinalPage";
 import EventList from "./pages/EventList";
 import Signup from "./pages/Signup";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SingleEvent from "./pages/EventPage";
 
 function App() {
-  const [eventData, setEventData] = useState();
   const [selectedEvent, setSelectedEvent] = useState("");
-  // console.log(eventData);
-
-  const MakeAPICall = async () => {
-    const res = await fetch("https://waste-no-time.herokuapp.com/events");
-    const data = await res.json();
-    setEventData(data);
-  };
-
-  useEffect(() => {
-    MakeAPICall();
-  }, []);
-
-  const handleEventClick = (data) => {
-    setSelectedEvent(data);
-  };
-  // console.log(selectedEvent)
 
   return (
     <>
@@ -42,12 +25,7 @@ function App() {
           <Route
             exact
             path="/events"
-            element={
-              <EventList
-                handleEventClick={handleEventClick}
-                eventData={eventData}
-              />
-            }
+            element={<EventList setSelectedEvent={setSelectedEvent} />}
           />
           <Route
             exact
