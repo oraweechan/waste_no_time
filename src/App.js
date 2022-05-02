@@ -8,11 +8,13 @@ import { Routes, Route } from "react-router-dom";
 import FinalPage from "./components/Forms/FinalPage";
 import EventList from "./pages/EventList";
 import Signup from "./pages/Signup";
+import EventReport from "./pages/EventReport";
 
 function App() {
   return (
     <>
       <NavBar />
+      <EventReport />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/form" element={<EventForm />} />
@@ -20,7 +22,6 @@ function App() {
         <Route exact path="/event-list" element={<EventList />} />
         <Route exact path="/sign-in" element={<SignIn />} />
         <Route exact path="/sign-up" element={<Signup />} />
-
       </Routes>
       <Footer />
     </>

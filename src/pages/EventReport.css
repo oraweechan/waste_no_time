@@ -1,0 +1,22 @@
+.eventReportBody {
+  padding: 3rem;
+  background-color: #acacac;
+
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  /* width: 800px; */
+}
+
+.eventReportForm {
+  max-width: 900px;
+  background-color: white;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.eventFormContent {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
