@@ -1,15 +1,14 @@
 .eventList {
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    margin-top: 1rem;
-
+  min-height: 710px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 .eventItem {
-  background-color: #B2B2B3;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  background-color: #b2b2b3;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
   color: black;
   cursor: pointer;
   font-size: 16px;
@@ -19,17 +18,20 @@
   transition: transform 150ms, box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation; 
+  touch-action: manipulation;
   margin-bottom: 0.5rem;
   transition: transform 150ms, box-shadow 150ms;
- 
-
 }
 
-
 .eventItem:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
   transform: translateY(-2px);
 }
 
-
+.invitationToLogin {
+  background-color: #b2b2b3;
+  min-height: 800px;
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+}

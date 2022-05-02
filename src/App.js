@@ -8,15 +8,50 @@ import { Routes, Route } from "react-router-dom";
 import FinalPage from "./components/Forms/FinalPage";
 import EventList from "./pages/EventList";
 import Signup from "./pages/Signup";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SingleEvent from "./pages/EventPage";
+import UserContext from "./context/userContext";
+import axios from "axios";
 
 function App() {
   const [selectedEvent, setSelectedEvent] = useState("");
+  const [userData, setUserData] = useState({
+    token: undefined,
+    user: undefined,
+  });
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem("auth-token");
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenResponse = await axios.post(
+        "https://waste-no-time.herokuapp.com/tokenIsValid",
+        null,
+        { headers: { "x-auth-token": token } }
+      );
+      if (tokenResponse.data) {
+        const userRes = await axios.get(
+          "https://waste-no-time.herokuapp.com/users/",
+          {
+            headers: { "x-auth-token": token },
+          }
+        );
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
+    };
+    checkLoggedIn();
+  }, []);
 
   return (
     <>
       <div>
+      <UserContext.Provider value={{ userData, setUserData }}>
         <NavBar />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
@@ -37,6 +72,7 @@ function App() {
         </Routes>
 
         <Footer />
+        </UserContext.Provider>
       </div>
     </>
   );
