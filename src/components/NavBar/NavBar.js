@@ -3,11 +3,13 @@ import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 export default function NavBar() {
   return (
     <>
-      <Navbar bg="light" variant="light">
+    
+    <Navbar  bg="light" variant="light">
         <Container className="navBar-Container">
           <Navbar.Brand className="sfLogo" href="/">
             <img
@@ -18,7 +20,7 @@ export default function NavBar() {
               alt="React Bootstrap logo"
             />
           </Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav >
             <NavDropdown
               className="navLink"
               title="who we are"
@@ -91,6 +93,9 @@ export default function NavBar() {
           </Nav>
         </Container>
       </Navbar>
+
+   
+    
     </>
   );
 }

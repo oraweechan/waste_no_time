@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import { Container } from "react-bootstrap";
+import { Box } from "@mui/system";
 
-export default function EventList() {
-  const [eventData, setEventData] = useState();
+export default function EventList({ eventData }) {
+  console.log(eventData);
 
-console.log(eventData)
-
-  const MakeAPICall = async () => {
-    const res = await fetch('https://waste-no-time.herokuapp.com/events');
-    const data = await res.json();
-    setEventData(data)
-  }
-
-useEffect(() => {
-    MakeAPICall();
-  }, [])
-  
-
-const eventList = eventData?.map((item) => {
-return (
-<>
-<div>
- { item.organizationName}
- {item.eventName}
- {item.dateCleanup.date}
-</div>
-</>
-
-)})
-
+  const eventList = eventData?.map((item, index) => {
+    return (
+      <>
+        <Container key={index}>
+          <Box >
+          name: {item.organizationName}
+          event name: {item.eventName}
+          date clean up: {item.dateCleanup.date}
+          </Box>
+         
+        </Container>
+      </>
+    );
+  });
 
   return (
-    <div>{eventList}</div>
-  )
+    <>
+      <div>
+        {eventList}
+      </div>
+    </>
+  );
 }
