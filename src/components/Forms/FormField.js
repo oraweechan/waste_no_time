@@ -9,27 +9,26 @@ export default function FormField({
   label = "",
   placeholder = "",
   value = "",
+  helperText = "",
 }) {
   return (
-    <Grid container >
-    <Grid item xs={6}>
-      <label htmlFor={htmlFor}>
-        <strong>{label}</strong>
-      </label>
+    <Grid container>
+      <Grid item xs={7}>
+        <label htmlFor={htmlFor}>
+          <strong>{label}</strong>
+        </label>
+      </Grid>
+      <Grid item xs={5}  mb={2}>
+        <input
+          className="formInput"
+          value={value}
+          placeholder={placeholder}
+          id={id}
+          type="text"
+          onChange={handleChange(`${handleChangeInput}`)}
+        />
+        <span className="help-block">{helperText}</span>
+      </Grid>
     </Grid>
-    <Grid item xs={6}>
-      <input
-        className="formInput"
-        value={value}
-        placeholder={placeholder}
-        id={id}
-        type="text"
-        onChange={handleChange(`${handleChangeInput}`)}
-      />
-    </Grid>
-  </Grid>
-
-      
-
   );
 }

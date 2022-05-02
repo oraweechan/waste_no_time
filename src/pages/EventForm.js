@@ -50,7 +50,7 @@ export default function EventForm() {
     "bagPickupLocation3.inFront": "",
     litter: "",
     largerItems: "",
-    requiredSupplies: "",
+    requireSupplies: "",
     brooms: "",
     shovels: "",
     rakes: "",
@@ -62,7 +62,24 @@ export default function EventForm() {
   const [step, setStep] = useState(0);
   let navigate = useNavigate();
 
-console.log(formData)
+  // console.log(formData);
+
+  const handleCheckbox = (name) => (e) => {
+    const { checked } = e.target;
+    if (checked) {
+      setFormData({ ...formData, [name]: true });
+    } else {
+      setFormData({ ...formData, [name]: false });
+    }
+  };
+  const handleCheckboxReverse = (name) => (e) => {
+    const { checked } = e.target;
+    if (checked) {
+      setFormData({ ...formData, [name]: false });
+    } else {
+      setFormData({ ...formData, [name]: true });
+    }
+  };
 
   const handleChange = (name) => (e) => {
     e.preventDefault();
@@ -71,7 +88,6 @@ console.log(formData)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate(`/form-submitted`);
     try {
       await fetch("https://waste-no-time.herokuapp.com/events", {
         method: "POST",
@@ -83,10 +99,11 @@ console.log(formData)
     } catch (error) {
       console.log("error", error.message);
     }
+    navigate(`/form-submitted`);
   };
 
   const handleNext = () => {
-      setStep((currStep) => currStep + 1);
+    setStep((currStep) => currStep + 1);
   };
 
   const handlePrev = () => {
@@ -97,7 +114,7 @@ console.log(formData)
     if (step === 1) {
       return (
         <>
-          <FormHeader />
+          <FormHeader text="Volunteer Group Sign-Up Form"/>
           <FirstStep
             handleNext={handleNext}
             handlePrev={handlePrev}
@@ -112,8 +129,9 @@ console.log(formData)
     if (step === 2) {
       return (
         <>
-          <FormHeader />
+          <FormHeader text="Volunteer Group Sign-Up Form" />
           <SecondStep
+            handleCheckbox={handleCheckbox}
             handleNext={handleNext}
             handlePrev={handlePrev}
             formData={formData}
@@ -127,14 +145,16 @@ console.log(formData)
     if (step === 3) {
       return (
         <>
-          <FormHeader />
+          <FormHeader text="Volunteer Group Sign-Up Form"/>
           <ThirdStep
+            handleCheckbox={handleCheckbox}
             handleNext={handleNext}
             handlePrev={handlePrev}
             formData={formData}
             step={step}
             setStep={setStep}
             handleChange={handleChange}
+            handleCheckboxReverse={handleCheckboxReverse}
             handleSubmit={handleSubmit}
           />
         </>
@@ -142,10 +162,11 @@ console.log(formData)
     } else {
       return (
         <TermsAndConditions
-        handleNext={handleNext}
+          formData={formData}
+          handleNext={handleNext}
           step={step}
           setStep={setStep}
-          handleChange={handleChange}
+          handleChange={handleCheckbox}
         />
       );
     }
@@ -154,12 +175,8 @@ console.log(formData)
   return (
     <div className="form">
       <div className="form-detail">
-        {/* <Paper > */}
         <FormStepper step={step} />
-
         <div className="formContent">{FormDisplay()}</div>
-        {/* <Grid container justifyContent={'center'}>{FormDisplay()}</Grid> */}
-        {/* </Paper> */}
       </div>
     </div>
   );

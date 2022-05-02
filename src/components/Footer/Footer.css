@@ -9,6 +9,11 @@
   line-height: 0.5vh;
 }
 
-.footer-logo {
-  display: flex;
+.footer-div {
+  padding: 2rem;
+  background-image: url("../../assets/SFBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  bottom: 0;
+  position: relative;
 }

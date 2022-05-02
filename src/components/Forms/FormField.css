@@ -1,3 +1,10 @@
-.formInput {
+/* .formInput {
     margin-bottom: 1rem;
+} */
+
+.help-block {
+    font-size: 12px;
+    display: block;
+    /* border: solid; */
+    /* margin-top: -2rem; */
 }
