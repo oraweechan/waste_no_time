@@ -12,7 +12,6 @@ export default function Footer() {
           width="170vw"
           height="70vh"
           className="d-inline-block align-top"
-          className="footer-logo"
           alt="React Bootstrap logo"
         />
         <div className="footer-text">
