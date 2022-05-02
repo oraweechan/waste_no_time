@@ -25,7 +25,6 @@ export default function SignUp() {
             email: data.get('email'),
             password: data.get('password'),
           }
-        console.log(JSON.stringify(newUser))
         try {
           await fetch("https://waste-no-time.herokuapp.com/users/signup", {
             method: "POST",
