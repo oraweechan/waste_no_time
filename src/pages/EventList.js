@@ -1,27 +1,27 @@
-import { Container } from "react-bootstrap";
-import { Box } from "@mui/system";
+
+import './EventList.css';
+import React from 'react'
+
 
 export default function EventList({ eventData }) {
-  console.log(eventData);
+  // console.log(eventData);
 
   const eventList = eventData?.map((item, index) => {
+    // console.log(item._id)
     return (
-      <>
-        <Container key={index}>
-          <Box >
+      <React.Fragment key={item._id}>
+        <button  className="button-37" >
           name: {item.organizationName}
           event name: {item.eventName}
           date clean up: {item.dateCleanup.date}
-          </Box>
-         
-        </Container>
-      </>
+          </button>
+          </React.Fragment>
     );
   });
 
   return (
     <>
-      <div>
+      <div className="eventList">
         {eventList}
       </div>
     </>
