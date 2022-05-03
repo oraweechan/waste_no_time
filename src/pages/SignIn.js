@@ -17,14 +17,7 @@ import React, { useContext, useState } from "react";
 const theme = createTheme({});
 
 export default function SignIn() {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
+
   let navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

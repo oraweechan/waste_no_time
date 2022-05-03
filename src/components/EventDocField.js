@@ -6,7 +6,6 @@ export default function EventDocField({ picURL, value, label }) {
       {" "}
       <Typography color={"green"} fontWeight={"bold"}>
         {label}
-       
       </Typography>
       <Typography>{value} </Typography>
     </div>

@@ -13,8 +13,6 @@ export default function EventReport1() {
   let navigate = useNavigate();
 
 
-//   console.log(reportData);
-
 
   const handleChange = (name) => (e) => {
     e.preventDefault();
