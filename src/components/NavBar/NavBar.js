@@ -1,9 +1,8 @@
-import React, { Component } from "react";
 import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
 
 export default function NavBar() {
   return (
@@ -90,6 +89,8 @@ export default function NavBar() {
               <NavDropdown.Item href="#action/3.3">partner</NavDropdown.Item>
             </NavDropdown>
             <Button>Donate</Button>
+            <Link to='/events'>  <SettingsIcon /></Link>
+           
           </Nav>
         </Container>
       </Navbar>
