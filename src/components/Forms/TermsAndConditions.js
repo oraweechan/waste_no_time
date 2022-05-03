@@ -18,7 +18,7 @@ export default function TermsAndConditions({ handleChange, handleNext }) {
   };
 
   return (
-    <form className="formDetails1">
+    <div className="formDetails1">
       <Grid justifyContent="center" container>
         <Grid item xs={12} justifyContent="center" container>
           <Box sx={{ fontWeight: "bold", m: 1, fontSize: 18 }}>
@@ -107,15 +107,10 @@ export default function TermsAndConditions({ handleChange, handleNext }) {
         />
       </Grid>
       <div className="buttonBegin">
-        <button
-        onClick={handleNext}
-          // onClick={handleNext("termsAndConditions")}
-          type="submit"
-          variant="contained"
-        >
+        <button onClick={handleNext} type="submit" variant="contained">
           Begin Application
         </button>
       </div>
-    </form>
+    </div>
   );
 }

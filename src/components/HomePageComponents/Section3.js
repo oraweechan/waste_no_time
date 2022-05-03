@@ -1,11 +1,8 @@
-import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Button } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import "./Section3.css";
 
-
 export default function Section3() {
-
   return (
     <>
       <div className="section3-div">
@@ -41,8 +38,8 @@ export default function Section3() {
                 </Card.Text>
               </Card.Body>
               <Card.Body>
-                <Card.Link href="/form">
-                  <Button >organize today</Button>
+                <Card.Link href="google.com">
+                  <Button>organize today</Button>
                 </Card.Link>
               </Card.Body>
             </Card>

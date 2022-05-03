@@ -79,6 +79,7 @@ function App() {
               path="/events"
               element={
                 <EventList
+                setSelectedEvent={setSelectedEvent}
                   handleEventClick={handleEventClick}
                   eventData={eventData}
                 />

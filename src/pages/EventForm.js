@@ -3,7 +3,7 @@ import FirstStep from "../components/Forms/FirstStep";
 import SecondStep from "../components/Forms/SecondStep";
 import ThirdStep from "../components/Forms/ThirdStep";
 import FormHeader from "../components/Forms/FormHeader";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EventForm.css";
 import FormStepper from "../components/Forms/FormStepper";
@@ -103,15 +103,8 @@ export default function EventForm() {
   };
 
   const handleNext = () => {
-  
-   
-      setStep((currStep) => currStep + 1);
-    
+    setStep((currStep) => currStep + 1);
   };
-
-  // useEffect(() => {
-  //   handleNext();
-  // }, []);
 
   const handlePrev = () => {
     setStep((currStep) => currStep - 1);
