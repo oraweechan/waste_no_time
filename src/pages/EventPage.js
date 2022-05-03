@@ -3,11 +3,15 @@ import EventDocField from "../components/EventDocField";
 import { Paper, Grid, Typography, Container, Box } from "@mui/material";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import './EventPage.css';
+import "./EventPage.css";
 
-export default function SingleEvent({ eventId }) {
+export default function EventPage({ eventId }) {
   const [eventDoc, setEventDoc] = useState({});
   let navigate = useNavigate();
+
+  const requestReport = () => {
+    navigate(`/events/report/${eventId}`);
+  };
 
   const makeAPICall = () => {
     fetch(`https://waste-no-time.herokuapp.com/events/${eventId}`)
@@ -21,15 +25,54 @@ export default function SingleEvent({ eventId }) {
     makeAPICall();
   }, [eventId]);
 
-  const handleCLick = () => {
+  const handleClick = () => {
     navigate(`/events`);
   };
+
+
+  let reportJSX = "";
+  if (eventDoc.reportSubmitted) {
+    reportJSX = (
+      <div className="eventReport">
+        <Box mb={4}>
+          <EventDocField
+            value={eventDoc.cleanUpReport.numOfVolunteers}
+            label="Volunteers Attended:"
+          />
+          <EventDocField
+            value={eventDoc.cleanUpReport.numOfBags}
+            label="Number of Bags Collected:"
+          />
+          <EventDocField
+            value={eventDoc.cleanUpReport.numOfBags}
+            label="Pictures from Before:"
+          />
+          {eventDoc.cleanUpReport.imgBefore === "" ? (
+            "None"
+          ) : (
+            <img src={eventDoc.cleanUpReport.imgBefore} alt="" />
+          )}
+
+          <EventDocField
+            picURL={eventDoc.cleanUpReport.imgAfter}
+            label="Pictures from After:"
+          />
+        </Box>
+      </div>
+    );
+  }
 
   let eventJSX = "";
   if (eventDoc.organizationName) {
     eventJSX = (
       <div className="singleEvent">
         <Grid container>
+          <Grid xs={12}>
+            <Typography mb={2} fontWeight={"bold"} fontSize={24}>
+              Volunteer Group Signup Form
+            </Typography>
+          </Grid>
+
           <Grid item xs={6}>
             <Grid item xs={12}>
               <Typography
@@ -328,7 +371,7 @@ export default function SingleEvent({ eventId }) {
               label="Consent to Public?:"
             />
             <Box mt={5}>
-              <Button onClick={handleCLick}>Back to events</Button>
+              <Button onClick={handleClick}>Back to events</Button>
             </Box>
           </Grid>
         </Grid>
@@ -341,14 +384,23 @@ export default function SingleEvent({ eventId }) {
       <div className="singleEventContainer">
         <Container>
           <Box p={5}>
-          <Paper >
-            <Box p={3}>
-              <Typography mb={2} fontWeight={"bold"} fontSize={24}>
-                Volunteer Group Signup Form
-              </Typography>
-              {eventJSX}
-            </Box>
-          </Paper>
+            <Paper>
+              <Box p={3}>
+                <Typography mb={2} fontWeight={"bold"} fontSize={24}>
+                  Cleanup Report
+                </Typography>
+                <Typography mb={2}>
+                  If no cleanup report present, click below to request
+                  form:
+                </Typography>
+                {reportJSX}
+                <Button onClick={requestReport}>Cleanup Report Form</Button>
+              </Box>
+
+              <Box p={3} mt={-2}>
+                {eventJSX}
+              </Box>
+            </Paper>
           </Box>
         </Container>
       </div>

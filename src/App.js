@@ -9,12 +9,13 @@ import FinalPage from "./components/Forms/FinalPage";
 import EventList from "./pages/EventList";
 import Signup from "./pages/Signup";
 import React, { useState, useEffect } from "react";
-import SingleEvent from "./pages/EventPage";
+import EventPage from "./pages/EventPage";
 import UserContext from "./context/userContext";
 import axios from "axios";
 import EventReport from "./pages/EventReport";
 
 function App() {
+  const [eventData, setEventData] = useState();
   const [selectedEvent, setSelectedEvent] = useState("");
   const [userData, setUserData] = useState({
     token: undefined,
@@ -29,14 +30,17 @@ function App() {
         token = "";
       }
       const tokenResponse = await axios.post(
-        "https://waste-no-time.herokuapp.com/tokenIsValid",
+        "https://waste-no-time.herokuapp.com/users/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenResponse.data) {
-        const userRes = await axios.get("https://waste-no-time.herokuapp.com/users/", {
-          headers: { "x-auth-token": token },
-        });
+        const userRes = await axios.get(
+          "https://waste-no-time.herokuapp.com/users/",
+          {
+            headers: { "x-auth-token": token },
+          }
+        );
         setUserData({
           token,
           user: userRes.data,
@@ -46,24 +50,52 @@ function App() {
     checkLoggedIn();
   }, []);
 
+  const MakeAPICall = async () => {
+    const res = await fetch("https://waste-no-time.herokuapp.com/events");
+    const data = await res.json();
+    setEventData(data);
+  };
+
+  useEffect(() => {
+    MakeAPICall();
+  }, []);
+
+  const handleEventClick = (data) => {
+    setSelectedEvent(data);
+  };
+
   return (
     <>
       <div>
         <UserContext.Provider value={{ userData, setUserData }}>
           <NavBar />
-          <EventReport />
+
           <Routes>
-            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/" element={<HomePage eventData={eventData}/>} />
             <Route exact path="/form" element={<EventForm />} />
             <Route exact path="/form-submitted" element={<FinalPage />} />
             <Route
               exact
               path="/events"
-              element={<EventList setSelectedEvent={setSelectedEvent} />}
+              element={
+                <EventList
+                  handleEventClick={handleEventClick}
+                  eventData={eventData}
+                />
+              }
             />
-            <Route exact path="/event/:eventId" element={<SingleEvent eventId={selectedEvent} />} />
+            <Route
+              exact
+              path="/events/:eventId"
+              element={<EventPage eventId={selectedEvent} />}
+            />
             <Route exact path="/sign-in" element={<SignIn />} />
             <Route exact path="/sign-up" element={<Signup />} />
+            <Route
+              exact
+              path="/events/report/:eventId"
+              element={<EventReport />}
+            />
           </Routes>
 
           <Footer />

@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import "./Section5.css";
 
-export default function Section5() {
+export default function Section5({eventData}) {
+
   return (
     <>
       <div className="section5-div">
