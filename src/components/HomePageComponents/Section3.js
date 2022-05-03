@@ -38,7 +38,7 @@ export default function Section3() {
                 </Card.Text>
               </Card.Body>
               <Card.Body>
-                <Card.Link href="google.com">
+                <Card.Link href="/form">
                   <Button>organize today</Button>
                 </Card.Link>
               </Card.Body>
