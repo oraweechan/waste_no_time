@@ -8,27 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import FinalPage from "./components/Forms/FinalPage";
 import EventList from "./pages/EventList";
 import Signup from "./pages/Signup";
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import EventReport from "./pages/EventReport";
-
-function App() {
-  const [eventData, setEventData] = useState();
-  console.log(eventData);
-
-  const MakeAPICall = async () => {
-    const res = await fetch("https://waste-no-time.herokuapp.com/events");
-    const data = await res.json();
-    setEventData(data);
-  };
-
-  useEffect(() => {
-    MakeAPICall();
-=======
 import React, { useState, useEffect } from "react";
 import SingleEvent from "./pages/EventPage";
 import UserContext from "./context/userContext";
 import axios from "axios";
+import EventReport from "./pages/EventReport";
 
 function App() {
   const [selectedEvent, setSelectedEvent] = useState("");
@@ -50,12 +34,9 @@ function App() {
         { headers: { "x-auth-token": token } }
       );
       if (tokenResponse.data) {
-        const userRes = await axios.get(
-          "https://waste-no-time.herokuapp.com/users/",
-          {
-            headers: { "x-auth-token": token },
-          }
-        );
+        const userRes = await axios.get("https://waste-no-time.herokuapp.com/users/", {
+          headers: { "x-auth-token": token },
+        });
         setUserData({
           token,
           user: userRes.data,
@@ -63,51 +44,31 @@ function App() {
       }
     };
     checkLoggedIn();
->>>>>>> bb242596bb5cf773dd429da3820b66a85f34c9bb
   }, []);
 
   return (
     <>
-<<<<<<< HEAD
-      <NavBar />
-      <EventReport />
-      <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/form" element={<EventForm />} />
-        <Route exact path="/form-submitted" element={<FinalPage />} />
-        <Route exact path="/events" element={<EventList eventData={eventData} />} />
-        <Route exact path="/event/:eventId" element={<EventList />} />
-        <Route exact path="/sign-in" element={<SignIn />} />
-        <Route exact path="/sign-up" element={<Signup />} />
-      </Routes>
-
-      <Footer />
-=======
       <div>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/form" element={<EventForm />} />
-          <Route exact path="/form-submitted" element={<FinalPage />} />
-          <Route
-            exact
-            path="/events"
-            element={<EventList setSelectedEvent={setSelectedEvent} />}
-          />
-          <Route
-            exact
-            path="/event/:eventId"
-            element={<SingleEvent eventId={selectedEvent} />}
-          />
-          <Route exact path="/sign-in" element={<SignIn />} />
-          <Route exact path="/sign-up" element={<Signup />} />
-        </Routes>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <NavBar />
+          <EventReport />
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/form" element={<EventForm />} />
+            <Route exact path="/form-submitted" element={<FinalPage />} />
+            <Route
+              exact
+              path="/events"
+              element={<EventList setSelectedEvent={setSelectedEvent} />}
+            />
+            <Route exact path="/event/:eventId" element={<SingleEvent eventId={selectedEvent} />} />
+            <Route exact path="/sign-in" element={<SignIn />} />
+            <Route exact path="/sign-up" element={<Signup />} />
+          </Routes>
 
-        <Footer />
+          <Footer />
         </UserContext.Provider>
       </div>
->>>>>>> bb242596bb5cf773dd429da3820b66a85f34c9bb
     </>
   );
 }

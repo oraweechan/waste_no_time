@@ -43,7 +43,7 @@ export default function EventList({ setSelectedEvent }) {
         </Container>
       </React.Fragment>
     );
-    <EventReport event={item} />;
+    // <EventReport event={item} />;
   });
 
   return (
